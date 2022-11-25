@@ -92,14 +92,21 @@ computeArea("triangle", 6, 7);
 // 5. Given an object. Invert it (keys become values and values become keys). If there is
 // more than key for that given value create an array.
 
-function invertKeyValue(data) {
-   let invertedObj = [];
-   for (let key in data) {
-         invertedObj[data[key]] = key;
+let data = { a: '1', b: '2', c: '2', d: '2'}
+let dataKeys = Object.keys(data);
+let dataValues = Object.values(data);
+let invertedObj = {};
+function invertKeyValue(dataKeys, dataValues) {
+   for (let val in dataValues) {
+      invertedObj[dataValues[val]] = []
    }
-   console.log(invertedObj);
- }
- 
- invertKeyValue({ a: "1", b: "2", c: "2", d: "2" });
-
-//  5rd kisat e
+   for (let val in dataValues) { 
+      if (invertedObj[dataValues[val]]) {
+         invertedObj[dataValues[val]].push(dataKeys[val]);
+      } else {
+         invertedObj[dataValues[val]] = dataKeys[val];
+      }
+   }
+   return invertedObj;
+}
+invertKeyValue(dataKeys, dataValues);
